@@ -34,4 +34,4 @@ lerna-debug.log*
 !.vscode/extensions.json
 
 # Safety
-tcp.config.ts
+tcb.config.ts
