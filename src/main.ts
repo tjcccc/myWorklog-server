@@ -11,12 +11,6 @@ const expressApp = express();
 const adapter = new ExpressAdapter(expressApp);
 const port = process.env.PORT || 5000;
 
-// async function bootstrap() {
-//   const app = await NestFactory.create(AppModule);
-//   await app.listen(5000);
-// }
-// bootstrap();
-
 export async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(
     AppModule,

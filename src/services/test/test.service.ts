@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import tcb from '@cloudbase/node-sdk';
 import Thing from '../../models/thing';
-import config from '../../../tcp.config';
+import config from '../../../tcb.config';
 
 @Injectable()
 export class TestService {
 
-  app = tcb.init(config ?? null);
-  // app = tcb.init();
+  // app = tcb.init(config ?? null);
+  app = tcb.init();
   db = this.app.database();
 
   getTest(): string {
