@@ -11,6 +11,12 @@ const expressApp = express();
 const adapter = new ExpressAdapter(expressApp);
 const port = process.env.PORT || 5000;
 
+// async function bootstrap() {
+//   const app = await NestFactory.create(AppModule);
+//   await app.listen(5000);
+// }
+// bootstrap();
+
 export async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(
     AppModule,
@@ -21,7 +27,7 @@ export async function bootstrap() {
   app.disable('x-powered-by');
 
   // 兼容云函数与本地开发
-  if (process.env.NODE_ENV === 'development') {
+  if (process.env.NODE_ENV.trim() === 'development') {
     await app.listen(port);
   } else {
     await app.init();
@@ -31,8 +37,10 @@ export async function bootstrap() {
 }
 
 // 开发模式下启动开发
-if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV.trim() === 'development') {
   bootstrap().then(() => {
     console.log(`App listen on http://localhost:${port}`);
   });
+} else {
+  console.log('Not in developing.');
 }
